@@ -2,8 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx
-  labels:
-    app: nginx
 spec:
   replicas: 1
   selector:
@@ -20,12 +18,17 @@ spec:
           ports:
             - containerPort: 80
               name: http
+          volumeMounts:
+            - name: nginx-conf
+              mountPath: /etc/nginx/conf.d
+        - name: nginx-exporter
+          image: nginx/nginx-prometheus-exporter:0.11.0
+          args:
+            - --nginx.scrape-uri=http://localhost:80/stub_status
+          ports:
             - containerPort: 9113
               name: metrics
-          args:
-            - /bin/sh
-            - -c
-            - |
-              apt update && apt install -y curl && \
-              /bin/bash -c "nginx -g 'daemon off;'" & \
-              /bin/bash -c "while true; do sleep 3600; done"
+      volumes:
+        - name: nginx-conf
+          configMap:
+            name: nginx-config
