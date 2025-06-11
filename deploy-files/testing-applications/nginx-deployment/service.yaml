@@ -9,8 +9,8 @@ spec:
     app: nginx
   ports:
     - port: 80
-      name: httpPort
+      name: http-port
       targetPort: http
     - port: 9113
-      name: metricsPort
+      name: metrics-port
       targetPort: metrics
