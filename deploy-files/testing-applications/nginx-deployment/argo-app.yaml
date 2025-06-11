@@ -6,9 +6,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/your-org/your-repo.git
+    repoURL: https://github.com/shivamsoin/argocd.git
     targetRevision: HEAD
-    path: manifests  # Folder containing nginx-deployment.yaml
+    path:   ./deploy-files/testing-applications/nginx-deployment    # Folder containing nginx-deployment.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: default
