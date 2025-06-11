@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: my-mono-app
+  namespace: argocd # Must be in the same namespace where ArgoCD is installed
+spec:
+  project: default
+
+  source:
+    repoURL: http://gitea-http.gitea.svc.cluster.local:3000/shivam/deployments
+    targetRevision: main # or a tag/commit/branch
+    path: ./
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: simple-ui-ns
+
+  syncPolicy:
+    automated:
+      prune: true       # Remove resources that are no longer in Git
+      selfHeal: true    # Automatically correct drift
+    syncOptions:
+      - CreateNamespace=true  
