@@ -2,13 +2,14 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: nginx-config
+  namespace: nginx-test-deployment
 data:
   metrics.conf: |
     server {
-        listen 80;
-        location /stub_status {
-            stub_status;
-            allow 127.0.0.1;
-            deny all;
-        }
+      listen 80;
+      location /stub_status {
+        stub_status;
+        allow 127.0.0.1;
+        deny all;
+      }
     }

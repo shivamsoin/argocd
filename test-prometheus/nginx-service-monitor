@@ -13,10 +13,10 @@ spec:
     matchNames:
       - argocd
   endpoints:
-    - port: http
-      targetPort: 8083
+    - port: metrics   # ✅ Must match the port name in the Service
       interval: 15s
----
+      path: /metrics 
+--- 
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
