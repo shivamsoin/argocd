@@ -1,10 +1,10 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: nginx
+  name: nginx-servicemonitor
   namespace: monitoring
   labels:
-    release: prometheus-stack
+    release: prometheus-stack  # Ensure this matches Prometheus' `release` label
 spec:
   selector:
     matchLabels:
