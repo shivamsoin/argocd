@@ -1,4 +1,4 @@
-# argocd
+# ArgoCD
 
 This repository contains an end-to-end setup to run ArgoCD in a local Minikube cluster with:
 
