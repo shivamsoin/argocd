@@ -1,10 +1,10 @@
-apiVersion: apps/v1
+apiVersion: apps/v2
 kind: Deployment
 metadata:
   name: nginx
   namespace: nginx-test-deployment
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: nginx
